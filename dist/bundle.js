@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(e){var n=document.createElement("h1");n.innerHTML="Hello World",document.body.appendChild(n)}));
