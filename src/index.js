@@ -1,14 +1,20 @@
-require('./index.css')
+import { html } from './core/html'
+import './index.scss'
 const { Navbar } = require('./components/Navbar')
-const navbar = Navbar()
+const { Vis } = require('./core/Render')
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const element = document.createElement('h1')
-    element.innerHTML = 'Hello World'
-    document.body.appendChild(element)
+document.addEventListener('DOMContentLoaded', async (event) => {
+    await Vis({
+        component: Navbar({
+            title: 'VanillaJS'
+        })
+    })
 
-    const navbarView = null || document.getElementById('navbar')
-    console.log(navbar)
-    navbarView.innerHTML = navbar.view()
-    // navbar.control()
+    await Vis({
+        render: async () => html`
+      <div>
+        <h1>Hello Dudes</h1>
+      </div>
+      `
+    })
 })
