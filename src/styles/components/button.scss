@@ -1,0 +1,31 @@
+.button {
+    background-color: transparent;
+    border: transparent;
+    text-align: center;
+    cursor: pointer;
+
+    &.primary {
+        color: white;
+        background-color: #00adee;
+        border: 2px solid transparent;
+    }
+
+    &.secondar {
+        color: #00adee;
+        background-color: white;
+    }
+
+    &.padded {
+        height: 2rem;
+        line-height: 2rem;
+        padding: {
+            left: 2rem;
+            right: 2rem;
+        }
+    }
+
+}
+
+button {
+    @extend .button;
+}

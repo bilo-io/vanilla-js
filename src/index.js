@@ -1,6 +1,7 @@
 import './index.scss'
 import Vision, { on, html } from './core/vision'
-const { Navbar } = require('./components/Navbar')
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 const state = {}
 
@@ -13,18 +14,23 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
     await Vision({
         view: async () => html`
-          <div id="login-view" class="flex-col" style="margin-top: 1rem">
+          <div
+            id="login-view"
+            class="flex-col card card-1"
+            style="max-width: 20rem; margin: auto; margin-top: 4rem; padding: 2rem"
+          >
             <form>
               <div class="flex-col">
                 <label>email address</label>
-                <input name="email" type="text" placeholder="email" />
+                <input name="email" type="text" placeholder="john@doe.com" />
               </div>
               <br />
               <div class="flex-col">
                 <label>password</label>
-                <input name="password" type="password" placeholder="password" />
+                <input name="password" type="password" placeholder="secure passphrase" />
               </div>
-              <button id="login-button" type="button">
+              <br /><br />
+              <button id="login-button" type="button" class="primary padded">
                 Log in
               </button>
             </form>
@@ -33,7 +39,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         `,
         controls: async () => {
             const container = await document.getElementById('login-view')
-
             on('click', container, 'button#login-button', () => {
                 console.log('Logging =>', state)
             })
@@ -50,14 +55,5 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         }
     })
 
-    await Vision({
-        view: async () => html`
-          <div>
-            <h1 style="color: #00adee">Hello Dudes</h1>
-            <p>
-              This is a test paragraph. Basic HTML inside Javascript, using template strings.
-            </p>
-          </div>
-      `
-    })
+    await Vision({ component: Footer() })
 })

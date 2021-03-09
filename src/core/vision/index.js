@@ -10,12 +10,9 @@ export const Vision = async ({
     DEBUG && console.log('Render:', target, component, element)
 
     if (component) {
-        // Component
         element.innerHTML = await component.view()
         window.onload = async () => await component.control()
     } else {
-        // Props
-        // NOTE: this is to prevent overriding a components controls (for example)
         if (view) {
             element.innerHTML = await view()
         }
@@ -29,15 +26,11 @@ export const Vision = async ({
 }
 
 // #region Utils
-export const on = async (eventName, container, query, callback) => {
-    const element = await container.querySelector(query)
-    console.log(query, ':', element)
-    element.addEventListener(eventName, callback)
-}
 
-export const html = (literal, ...cooked) => {
-    return literal
-}
+export * from './html'
+export * from './dom'
+export * from './style'
+
 // #endregion
 
 export default Vision

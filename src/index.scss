@@ -1,6 +1,9 @@
 @import './styles/layout.scss';
+@import './styles/components/button.scss';
+@import './styles/components/card.scss';
 
 body {
+    font-family: 'Open Sans', sans-serif;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -10,16 +13,36 @@ body {
     padding: 0;
 }
 
-#navbar {
+#Navbar {
     box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
     background-color: white;
     height: 3rem;
     line-height: 3rem;
     color: #333;
+
     &:hover {
         // color: white;
     }
 
     display: flex;
     flex-direction: row;
+}
+
+#Footer {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(black, 0.1);
+    color: white;
+    height: 3rem;
+    bottom: 0;
+}
+
+input {
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+
+label {
+    color: rgba(black, 0.5);
+    margin-bottom: 0.5rem;
 }
