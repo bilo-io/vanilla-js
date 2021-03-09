@@ -1,10 +1,14 @@
-import html from 'typescript-lit-html-plugin'
+const html = (literal, ...cooked) => {
+    return literal
+}
 export const Navbar = () => ({
-    view: html`
-        <div style="width: 100%">
-            <h1>Navbar</h1>
+    view: () => {
+        return html`
+        <div style="width: 100%; background-color: red; height: 3rem">
+            <div>Navbar</div>
         </div>
-    `,
+    `
+    },
     control: () => {
         console.log('init-component: Navbar')
     }
