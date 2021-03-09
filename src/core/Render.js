@@ -6,7 +6,7 @@ export const Vis = async ({
 }) => {
     const target = tag || 'div'
     const element = null || document.createElement(target)
-    console.log('Render:', target, component, element)
+    DEBUG && console.log('Render:', target, component, element)
 
     if (component) {
         element.innerHTML = await component.view()
