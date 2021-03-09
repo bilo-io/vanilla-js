@@ -7,7 +7,7 @@ export const Icon = ({ name, style }) => ({
             style="${style}"
         >Icon</div>
     `,
-    control: async () => {
+    controls: async () => {
         const container = await document.getElementById(Icon)
     }
 })

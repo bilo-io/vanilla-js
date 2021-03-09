@@ -1,8 +1,8 @@
-import { on, html } from '../core/vision'
+import Vision, { on, html } from '../core/vision'
 
 // COMPONENT
-export const Navbar = ({ title }) => ({
-    view: async () => await html`
+export const Navbar = async ({ title }) => await Vision({
+    view: async () => html`
         <div id="Navbar" class="flex-row">
             <button style="padding: 0 1rem 0 1rem">
                 <i class="fas fa-bars"></i>
@@ -10,8 +10,11 @@ export const Navbar = ({ title }) => ({
             <div style="margin-left: 1rem">${title}</div>
         </div>
     `,
-    control: async () => {
-        const container = await document.getElementById('navbar')
+    controls: async () => {
+        const container = await document.getElementById('Navbar')
+
+        console.log('Navbar.container', container)
+
         on('click', container, 'button',
             () => {
                 console.log('clicked button')

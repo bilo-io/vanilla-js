@@ -5,7 +5,7 @@ export const About = () => ({
             <h1>About</h1>
         </div>
     `,
-    control: () => {
+    controls: () => {
         console.log('init-page: About')
     }
 })

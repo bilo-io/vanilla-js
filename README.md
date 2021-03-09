@@ -30,7 +30,7 @@ export const CustomComponent = ({ title }) => ({
             <div style="margin-left: 1rem">NavbarTitle</div>
         </div>
     `,
-    control: async () => {
+    controls: async () => {
         const container = await document.getElementById('navbar')
         on('click', container, 'button',
             () => {

@@ -4,7 +4,7 @@ export const Footer = () => ({
     view: async () => await html`
         <div id='Footer' class='footer'>Footer</div>
     `,
-    control: async () => {
+    controls: async () => {
         const container = await document.getElementById(Footer)
     }
 })

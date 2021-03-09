@@ -12,26 +12,39 @@ export const Vision = async ({
     if (component) {
         // Component
         element.innerHTML = await component.view()
-        window.onload = async () => await component.control()
+        const loadControls = async () => await component.controls()
+
+        attachToWindowLoad(loadControls)
     } else {
         if (view) {
             element.innerHTML = await view()
         }
 
         if (controls) {
-            window.onload = async () => await controls()
+            const loadControls = async () => await controls()
+            attachToWindowLoad(loadControls)
         }
     }
 
     document.body.appendChild(element)
 }
 
-// #region Utils
+// #region Helpers
+const attachToWindowLoad = (loadControls) => {
+    if (window.addEventListener) {
+        window.addEventListener('load', loadControls)
+    } else if (window.attachEvent) {
+        window.attachEvent('onload', loadControls)
+    } else {
+        console.error('Vision.ERROR:[101] could not attach event to window.onload')
+    }
+}
+// #endregion
 
+// #region Utils
 export * from './html'
 export * from './dom'
 export * from './style'
-
 // #endregion
 
 export default Vision

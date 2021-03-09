@@ -4,6 +4,12 @@
     text-align: center;
     cursor: pointer;
 
+    &:focus {
+        border: none;
+        outline: none;
+        box-shadow: 1px 2px 8px rgba(black, 0.3);
+    }
+
     &.primary {
         color: white;
         background-color: #00adee;
