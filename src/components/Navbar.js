@@ -1,5 +1,5 @@
 import { html } from '../core/html'
-import { on } from '../core/dom'
+import { on } from '../core/vision'
 
 // COMPONENT
 export const Navbar = ({ title }) => ({
