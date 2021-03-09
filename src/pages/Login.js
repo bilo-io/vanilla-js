@@ -1,4 +1,5 @@
 import Vision, { on, html } from '../core/vision'
+import { push } from '../core/Router'
 
 const state = {}
 export const Login = async () => await Vision({
@@ -45,6 +46,7 @@ export const Login = async () => await Vision({
         })
         on('click', container, 'form>button#login-button', () => {
             console.log('Log in =>', state)
+            push('/home')
         })
     }
 })
