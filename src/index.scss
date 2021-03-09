@@ -4,7 +4,9 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #EEF1EF;
     position: fixed;
+    color: #333;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -15,10 +17,14 @@ body {
 
 #Navbar {
     box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-    background-color: white;
+    background-color: #1C2D3E;
+    position: absolute;
+    width: 100vw;
     height: 3rem;
+    top: 0;
+    left: 0;
     line-height: 3rem;
-    color: #333;
+    color: #EEF1EF!important;
 
     &:hover {
         // color: white;
@@ -40,6 +46,7 @@ body {
 input {
     height: 1.5rem;
     line-height: 1.5rem;
+    background-color: transparent;
 }
 
 label {

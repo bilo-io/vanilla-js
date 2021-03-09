@@ -3,7 +3,7 @@ export class Router {
         this.routes = []
     }
 
-    get (uri, callback) {
+    set (uri, callback) {
         // ensure that the parameters are not empty
         if (!uri || !callback) throw new Error('Router.ERROR: uri or callback must be given')
 
@@ -24,10 +24,15 @@ export class Router {
         this.routes.push(route)
     }
 
-    init () {
+    resolve () {
+        const path = window.location.pathname
+        console.log('Router', {
+            routes: this.routes,
+            path
+        })
         this.routes.some(route => {
             const regEx = new RegExp(`^${route.uri}$`) // i'll explain this conversion to regular expression below
-            const path = window.location.pathname
+            // debugger
 
             if (path.match(regEx)) {
                 // our route logic is true, return the corresponding callback
@@ -35,6 +40,8 @@ export class Router {
                 const req = { path } // i'll also explain this code below
                 return route.callback.call(this, req)
             }
+
+            return null
         })
     }
 }
@@ -42,6 +49,7 @@ export class Router {
 export const push = (path, state = {}, title = '') => {
     const fullPath = window.location.origin + path
     console.log('Router.push', { state, path, fullPath })
+    window.dispatchEvent(new PopStateEvent('popstate', { state: { path } }))
     window.history.pushState(state, path, fullPath)
 }
 

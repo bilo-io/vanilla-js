@@ -3,8 +3,10 @@ export const Vision = async ({
     component,
     view,
     controls,
+    isGlobal,
     DEBUG
 }) => {
+    const root = null || document.getElementById('root')
     const target = tag || 'div'
     const element = null || document.createElement(target)
     DEBUG && console.log('Render:', target, component, element)
@@ -25,7 +27,28 @@ export const Vision = async ({
         }
     }
 
-    document.body.appendChild(element)
+    if (isGlobal) {
+        document.body.appendChild(element)
+    } else {
+        console.log('root', root)
+        root.appendChild(element)
+    }
+    return element
+}
+
+export const clearRoot = () => {
+    const root = document.getElementById('root')
+    console.log('LIFE_CYCLE: root.clear()', root)
+    // root.remove()
+    root.innerHTML = ''
+
+    // const newRoot = document.createElement('div#root')
+    // console.log('LIFE_CYCLE: root.create()', newRoot)
+    // document.body.appendChild(newRoot)
+}
+
+export const destroy = (element) => {
+    document.body.removeChild(element)
 }
 
 // #region Helpers

@@ -1,5 +1,5 @@
 import './index.scss'
-import Vision, { on, html } from './core/vision'
+import Vision, { on, html, clearRoot } from './core/vision'
 import Router, { redirect } from './core/Router'
 // #region Components
 import Button from './components/Button'
@@ -13,23 +13,38 @@ import Home from './pages/Home'
 import Error404 from './pages/Error404'
 // #endregion
 
-const state = {}
+// const state = {}
 
-const router = new Router()
+class AppComponent {
+    constructor () {
+        this.state = {}
+        Navbar({ title: 'Vision.JS' })
+        this.router = new Router()
+        this.router.set('/', Home)
+        this.router.set('/home', Home)
+        this.router.set('/error', Error404)
+        this.router.set('/login', Login)
+        this.render()
+        this.eventListeners()
+    }
 
-const App = (event) => {
-    console.log('route:', window.location.pathname)
-    Navbar({ title: 'New' })
-    router.get('/', Home)
-    router.get('/home', Home)
-    router.get('/error', Error404)
-    router.get('/login', Login)
-    router.init()
+    render (event) {
+        console.log('route:', window.location.pathname)
+        this.router.resolve()
 
-    router.get('/', () => redirect('/login'))
+        // router.get('/', () => redirect('/login'))
+    }
+
+    eventListeners () {
+        document.addEventListener('DOMContentLoaded', this.init)
+        // window.addEventListener('load', App)
+        window.addEventListener('popstate', (a) => {
+            console.log('window.onpopstate', a)
+            clearRoot()
+            this.router.resolve()
+        })
+        // window.addEventListener('hashchange', this.router.resolve)
+    }
 }
 
-document.addEventListener('DOMContentLoaded', App)
-// window.addEventListener('load', App)
-window.addEventListener('popstate', router.init)
-window.addEventListener('hashchange', router.init)
+const app = new AppComponent()
