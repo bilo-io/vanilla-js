@@ -10,7 +10,7 @@ export const Vis = async ({
 
     if (component) {
         element.innerHTML = await component.view()
-        await component.control()
+        window.onload = async () => await component.control()
     }
 
     if (render) {

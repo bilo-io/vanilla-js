@@ -1,15 +1,21 @@
 import { html } from '../core/html'
+import { on } from '../core/dom'
+
 // COMPONENT
 export const Navbar = ({ title }) => ({
-    view: async () => html`
+    view: async () => await html`
         <div id="navbar" class="flex-row">
             <button>Menu</button>
             <div style="margin-left: 1rem">NavbarTitle</div>
         </div>
     `,
     control: async () => {
-        console.log('init-component: Navbar')
-        // TODO: bind logic to view here
+        const container = await document.getElementById('navbar')
+        on('click', container, 'button',
+            () => {
+                console.log('clicked button')
+                alert('Yo dude')
+            })
     }
 })
 
