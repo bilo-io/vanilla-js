@@ -5,11 +5,11 @@ export class Router {
 
     get (uri, callback) {
         // ensure that the parameters are not empty
-        if (!uri || !callback) throw new Error('uri or callback must be given')
+        if (!uri || !callback) throw new Error('Router.ERROR: uri or callback must be given')
 
         // ensure that the parameters have the correct types
-        if (typeof uri !== 'string') throw new TypeError('typeof uri must be a string')
-        if (typeof callback !== 'function') throw new TypeError('typeof callback must be a function')
+        if (typeof uri !== 'string') throw new TypeError('Router.ERROR: typeof uri must be a string')
+        if (typeof callback !== 'function') throw new TypeError('Router.ERROR: typeof callback must be a function')
 
         // throw an error if the route uri already exists to avoid confilicting routes
         this.routes.forEach(route => {
@@ -39,8 +39,16 @@ export class Router {
     }
 }
 
-export const push = (url, state = {}, title = '') => window.history.pushState(state, title, url)
+export const push = (path, state = {}, title = '') => {
+    const fullPath = window.location.origin + path
+    console.log('Router.push', { state, path, fullPath })
+    window.history.pushState(state, path, fullPath)
+}
 
-export const redirect = (url, state = {}, title = '') => window.history.pushState(state, title, url)
+export const redirect = (path, state = {}, title = '') => {
+    const fullPath = window.location.origin + path
+    console.log('Router.redirect', { state, path, fullPath })
+    window.history.pushState(state, path, fullPath)
+}
 
 export default Router

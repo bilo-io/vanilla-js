@@ -15,22 +15,21 @@ import Error404 from './pages/Error404'
 
 const state = {}
 
-const App = (event) => {
-    const router = new Router()
-    console.log('route', window.location.pathname)
-    Navbar({ title: 'New' })
+const router = new Router()
 
-    router.get('/', () => redirect('/login'))
-    router.get('/login', Login)
+const App = (event) => {
+    console.log('route:', window.location.pathname)
+    Navbar({ title: 'New' })
+    router.get('/', Home)
     router.get('/home', Home)
     router.get('/error', Error404)
-
+    router.get('/login', Login)
     router.init()
 
-    Vision({ component: Footer() })
+    router.get('/', () => redirect('/login'))
 }
 
 document.addEventListener('DOMContentLoaded', App)
 // window.addEventListener('load', App)
-// window.addEventListener('popstate', App)
-// window.addEventListener('hashchange', App)
+window.addEventListener('popstate', router.init)
+window.addEventListener('hashchange', router.init)

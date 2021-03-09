@@ -13,8 +13,7 @@ export const Vision = async ({
         // Component
         element.innerHTML = await component.view()
         const loadControls = async () => await component.controls()
-
-        attachToWindowLoad(loadControls)
+        await attachToWindowLoad(loadControls)
     } else {
         if (view) {
             element.innerHTML = await view()
@@ -22,7 +21,7 @@ export const Vision = async ({
 
         if (controls) {
             const loadControls = async () => await controls()
-            attachToWindowLoad(loadControls)
+            await attachToWindowLoad(loadControls)
         }
     }
 
@@ -31,6 +30,7 @@ export const Vision = async ({
 
 // #region Helpers
 const attachToWindowLoad = (loadControls) => {
+    // loadControls()
     if (window.addEventListener) {
         window.addEventListener('load', loadControls)
     } else if (window.attachEvent) {
