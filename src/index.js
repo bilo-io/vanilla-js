@@ -1,14 +1,27 @@
 import './index.scss'
 import Vision, { on, html } from './core/vision'
+import Button from './components/Button'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 const state = {}
 
+console.log({
+    Vision, on, html
+})
+
 document.addEventListener('DOMContentLoaded', async (event) => {
     await Vision({
         component: Navbar({
             title: 'VanillaJS'
+        })
+    })
+
+    await Vision({
+        component: Button({
+            content: 'TestButton',
+            className: 'primary',
+            onClick: () => alert('Clicked button')
         })
     })
 
@@ -39,15 +52,16 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         `,
         controls: async () => {
             const container = await document.getElementById('login-view')
-            on('click', container, 'button#login-button', () => {
+            console.log('controls initialised')
+            on('click', container, 'form>button#login-button', () => {
                 console.log('Logging =>', state)
             })
-            on('change', container, 'input[name="email"]', (e) => {
+            on('change', container, 'form>input[name="email"]', (e) => {
                 console.log('Typed email', e.target.value)
                 state.email = e.target.value
                 console.log({ state })
             })
-            on('change', container, 'input[name="password"]', (e) => {
+            on('change', container, 'form>input[name="password"]', (e) => {
                 console.log('Typed email', e.target.value)
                 state.password = e.target.value
                 console.log({ state })

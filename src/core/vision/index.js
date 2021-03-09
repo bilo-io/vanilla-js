@@ -10,6 +10,7 @@ export const Vision = async ({
     DEBUG && console.log('Render:', target, component, element)
 
     if (component) {
+        // Component
         element.innerHTML = await component.view()
         window.onload = async () => await component.control()
     } else {
